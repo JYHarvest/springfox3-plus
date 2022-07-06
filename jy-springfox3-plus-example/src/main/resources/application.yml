@@ -1,0 +1,5 @@
+springfox3-plus:
+  documentation:
+    enabled: true
+    groupName: example
+    baseUrl: http://127.0.0.1:8080
