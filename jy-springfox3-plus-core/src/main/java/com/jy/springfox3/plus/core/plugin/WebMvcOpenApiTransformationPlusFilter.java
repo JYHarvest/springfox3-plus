@@ -5,6 +5,8 @@ import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.json.JSONUtil;
 import com.google.common.collect.Lists;
+import com.jy.springfox3.plus.core.annotation.ApiModelPropertyPlus;
+import com.jy.springfox3.plus.core.annotation.ApiParamPlus;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.Operation;
@@ -13,8 +15,6 @@ import io.swagger.v3.oas.models.Paths;
 import io.swagger.v3.oas.models.media.Content;
 import io.swagger.v3.oas.models.media.Schema;
 import io.swagger.v3.oas.models.parameters.RequestBody;
-import com.jy.springfox3.plus.core.annotation.ApiModelPropertyPlus;
-import com.jy.springfox3.plus.core.annotation.ApiParamPlus;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -139,7 +139,8 @@ public class WebMvcOpenApiTransformationPlusFilter implements WebMvcOpenApiTrans
                 if (methodParameter.hasParameterAnnotation(ApiParamPlus.class) && methodParameter
                         .hasParameterAnnotation(
                                 org.springframework.web.bind.annotation.RequestBody.class)) {
-                    ApiParamPlus apiParamPlus = methodParameter.getParameterAnnotation(ApiParamPlus.class);
+                    ApiParamPlus apiParamPlus = methodParameter
+                            .getParameterAnnotation(ApiParamPlus.class);
                     String[] groupArr = apiParamPlus.value();
                     Class<?> parameterType = methodParameter.getParameterType();
                     String simpleName = parameterType.getSimpleName();
@@ -154,7 +155,13 @@ public class WebMvcOpenApiTransformationPlusFilter implements WebMvcOpenApiTrans
                                 .getAnnotation(field, ApiModelPropertyPlus.class);
                         if (annotation != null) {
                             String[] fieldGroup = annotation.value();
-                            if (!ArrayUtil.containsAny(groupArr, fieldGroup)) {
+                            if (ArrayUtil.isNotEmpty(fieldGroup) && !ArrayUtil
+                                    .containsAny(groupArr, fieldGroup)) {
+                                invalidFieldNameList.add(field.getName());
+                            }
+                            String[] exclude = annotation.exclude();
+                            if (ArrayUtil.isNotEmpty(exclude) && ArrayUtil
+                                    .containsAny(groupArr, exclude)) {
                                 invalidFieldNameList.add(field.getName());
                             }
                         }
