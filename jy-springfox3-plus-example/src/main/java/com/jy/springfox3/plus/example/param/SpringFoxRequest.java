@@ -1,4 +1,4 @@
-package com.jy.springfox3.plus.core.param;
+package com.jy.springfox3.plus.example.param;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

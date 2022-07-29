@@ -1,7 +1,7 @@
 package com.jy.springfox3.plus.example.controller;
 
 import com.jy.springfox3.plus.core.annotation.ApiParamPlus;
-import com.jy.springfox3.plus.core.param.SpringFoxRequest;
+import com.jy.springfox3.plus.example.param.SpringFoxRequest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;

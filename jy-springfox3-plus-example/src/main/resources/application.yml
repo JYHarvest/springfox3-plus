@@ -1,3 +1,7 @@
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
 springfox3-plus:
   documentation:
     enabled: true
