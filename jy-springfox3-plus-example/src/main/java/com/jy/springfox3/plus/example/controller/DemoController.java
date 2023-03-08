@@ -1,7 +1,8 @@
 package com.jy.springfox3.plus.example.controller;
 
 import com.jy.springfox3.plus.core.annotation.ApiParamPlus;
-import com.jy.springfox3.plus.core.param.SpringFoxRequest;
+import com.jy.springfox3.plus.core.annotation.ApiResponseGroup;
+import com.jy.springfox3.plus.example.model.SpringFoxRequest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,28 +20,31 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("springfox-plus")
 public class DemoController {
 
-    @GetMapping("getMethod1")
+    @GetMapping("list")
     @ApiOperation("获取列表")
-    public String get1(@ApiParamPlus("1") SpringFoxRequest springFoxRequest) {
-        return "get1";
+    @ApiResponseGroup("get")
+    public SpringFoxRequest list(@ApiParamPlus("get") SpringFoxRequest springFoxRequest) {//使用get请求,无法检测Bean属性
+        SpringFoxRequest request = new SpringFoxRequest();
+        request.name = "1";
+        return request;
     }
 
-    @GetMapping("getMethod2")
+    @GetMapping("page")
     @ApiOperation("分页查询")
-    public String get2(@ApiParamPlus("2") SpringFoxRequest springFoxRequest) {
-        return "get2";
+    public String page(@ApiParamPlus("get") SpringFoxRequest springFoxRequest) {//使用get请求,无法检测Bean属性
+        return "page";
     }
 
-    @PostMapping({"postMethod1", "postMethod111"})
+    @PostMapping({"create"})
     @ApiOperation("新增")
-    public String post1(@ApiParamPlus("2") @RequestBody SpringFoxRequest request) {
-        return "post1";
+    public String post1(@ApiParamPlus("create") @RequestBody SpringFoxRequest request) {
+        return "create";
     }
 
-    @PostMapping("postMethod2")
+    @PostMapping("modify")
     @ApiOperation("修改")
-    public String post2(@ApiParamPlus("1") @RequestBody SpringFoxRequest request) {
-        return "post2";
+    public String modify(@ApiParamPlus("modify") @RequestBody SpringFoxRequest request) {
+        return "modify";
     }
 
 }
