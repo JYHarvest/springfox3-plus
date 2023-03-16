@@ -7,12 +7,14 @@ springfox-plus是一个基于springfox3二开的在线文档工具，其核心�
 ## Features
 - 文档中的入参，支持按照java类中属性位置展示
 - 支持入参属性分组；同一个类被不同场景使用
+- 兼容SpringBoot2.6.X（请使用1.0分支）
 
 ## Development
 
 于2022年中，我在github上创建springfox3-plus项目仓库并提交第一个commit，随之进行设计开发……
 
 欢迎大家的关注和使用，springfox3-plus也将拥抱变化，持续发展。
+
 
 ## Contributing
 
