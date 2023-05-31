@@ -5,11 +5,7 @@ import com.jy.springfox3.plus.core.annotation.ApiResponseGroup;
 import com.jy.springfox3.plus.example.model.SpringFoxRequest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author qcsj
@@ -25,7 +21,7 @@ public class DemoController {
     @ApiResponseGroup("get")
     public SpringFoxRequest list(@ApiParamPlus("get") SpringFoxRequest springFoxRequest) {//使用get请求,无法检测Bean属性
         SpringFoxRequest request = new SpringFoxRequest();
-        request.name = "1";
+        request.setName("1");
         return request;
     }
 
